@@ -290,7 +290,27 @@
 </ul>
 <hr>
 <h4 id="小數型-1"><a href="#小數型-1" class="headerlink" title="小數型"></a>小數型</h4><ul>
-<li>絕對保證整數部分不會被四捨五入（不會丟失精度），小數部分有可能（理論小數部分也不會丟失精度）<br>| 類型 | 存儲空間(字節) | 最小值(理論) | 最大值(理論) |<br>| :-: | :-: | :-: | :-: |<br>| DECIMAL | 變長，大致是每9個數字，採用4個字節存儲 整數和小數分開計算 | M, 最大是65 D, 最大是30 默認是10, 2 - (65個9) | (+ 65個9) |</li>
+<li>絕對保證整數部分不會被四捨五入（不會丟失精度），小數部分有可能（理論小數部分也不會丟失精度）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">類型</th>
+<th style="text-align:center">存儲空間(字節)</th>
+<th style="text-align:center">最小值(理論)</th>
+<th style="text-align:center">最大值(理論)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DECIMAL</td>
+<td style="text-align:center">變長，大致是每9個數字，採用4個字節存儲 整數和小數分開計算</td>
+<td style="text-align:center">M, 最大是65 D, 最大是30 默認是10, 2 - (65個9)</td>
+<td style="text-align:center">(+ 65個9)</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><p>創建定點數表：以浮點數作為對比</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists my_decimal(</span><br><span class="line">    f1 float(10, 2),</span><br><span class="line">    d1 decimal(10, 2)</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
 </li>
@@ -311,7 +331,57 @@
 <li><b><code>Date：</code></b>日期，就是datetime中的date部分</li>
 <li><b><code>Time：</code></b>時間段，指定的某個區間之間，-時間 +時間</li>
 <li><b><code>TimeTamp：</code></b>時間戳，並不是時間戳，只是從1970年開始的YYYY-mm-dd HH:ii:ss 格式與datetime完全一致</li>
-<li><b><code>Year：</code></b>年份，兩種形式，year(2)和year(4)：表示1901年到2155年<br>| 類型 | 顯示格式 | 取值 | 存儲空間 | 零值 |<br>| :-: | :-: | :-: | :-: | :-: |<br>| DATETIME | YYYY-mm-dd HH:mm:ss | ‘1000-01-01 00:00:00’到’9999-12-31 23:59:59’ | 8 | 00000-00-00 00:00:00 |<br>| TIMESTAMP | YYYY-mm-dd HH:mm:ss | 是’1970-01-01 00:00:00’到’2038-01-19 03:14:07’ | 4 | 0000-00-00 00:00:00 |<br>| DATE | YYYY-mm-dd | ‘1000-01-01’到’9999-12-31’ | 3 | 0000-00-00 |<br>| TIME | HH:mm:ss | ‘-838:59:59’到’838:59:59’ | 3 | 00:00:00 |<br>| YEAR | YYYY | 1901到2155 | 1 | 0000 |</li>
+<li><b><code>Year：</code></b>年份，兩種形式，year(2)和year(4)：表示1901年到2155年</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">類型</th>
+<th style="text-align:center">顯示格式</th>
+<th style="text-align:center">取值</th>
+<th style="text-align:center">存儲空間</th>
+<th style="text-align:center">零值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DATETIME</td>
+<td style="text-align:center">YYYY-mm-dd HH:mm:ss</td>
+<td style="text-align:center">‘1000-01-01 00:00:00’到’9999-12-31 23:59:59’</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">00000-00-00 00:00:00</td>
+</tr>
+<tr>
+<td style="text-align:center">TIMESTAMP</td>
+<td style="text-align:center">YYYY-mm-dd HH:mm:ss</td>
+<td style="text-align:center">是’1970-01-01 00:00:00’到’2038-01-19 03:14:07’</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0000-00-00 00:00:00</td>
+</tr>
+<tr>
+<td style="text-align:center">DATE</td>
+<td style="text-align:center">YYYY-mm-dd</td>
+<td style="text-align:center">‘1000-01-01’到’9999-12-31’</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0000-00-00</td>
+</tr>
+<tr>
+<td style="text-align:center">TIME</td>
+<td style="text-align:center">HH:mm:ss</td>
+<td style="text-align:center">‘-838:59:59’到’838:59:59’</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">00:00:00</td>
+</tr>
+<tr>
+<td style="text-align:center">YEAR</td>
+<td style="text-align:center">YYYY</td>
+<td style="text-align:center">1901到2155</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0000</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><b>DATETIME, TIMESTAMP, DATE，在存儲數據時，針對數據格式與合法性進行驗證，不對日期的時間合法性進行驗證</b></li>
 <li><p>創建時間日期表</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists my_date(</span><br><span class="line">    d1 datetime,</span><br><span class="line">    d2 date,</span><br><span class="line">    d3 time,</span><br><span class="line">    d4 timestamp,</span><br><span class="line">    d5 year</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
