@@ -176,6 +176,11 @@
           2017-10-16
       </time>
     
+    
+    | 
+    <a href='/tags/php/'>php</a>
+    
+    
 </span>
                 <h1>数据库操作</h1>
             </div>
@@ -204,7 +209,7 @@
 <h4 id="mysql數據庫應用系統的基本結構"><a href="#mysql數據庫應用系統的基本結構" class="headerlink" title="mysql數據庫應用系統的基本結構"></a>mysql數據庫應用系統的基本結構</h4><ul>
 <li>數據庫客戶端（軟體）</li>
 <li>數據庫管理系統（軟體）</li>
-<li>數據（文件）<br>[img]</li>
+<li>數據（文件）<br><img src="數據庫系統基本結構.jpg" alt="數據庫系統基本結構"></li>
 </ul>
 <hr>
 <h4 id="mysql數據庫操作的基本模式（流程）"><a href="#mysql數據庫操作的基本模式（流程）" class="headerlink" title="mysql數據庫操作的基本模式（流程）"></a>mysql數據庫操作的基本模式（流程）</h4><ul>
@@ -212,7 +217,7 @@
 <li>客戶端向服務器端發送sql命令</li>
 <li>服務器端執行命令，賓返回執行的結果</li>
 <li>客戶端接收結果（賓顯示）</li>
-<li>斷開連接<br>[img]</li>
+<li>斷開連接<br><img src="mysql數據操作的基本模式（流程）.jpg" alt="mysql數據操作的基本模式（流程）"></li>
 </ul>
 <hr>
 <h4 id="mysql系統級操作及基本語法規定"><a href="#mysql系統級操作及基本語法規定" class="headerlink" title="mysql系統級操作及基本語法規定"></a>mysql系統級操作及基本語法規定</h4><ul>
@@ -555,11 +560,34 @@
 <li><p>校對集必須在沒有數據之前聲明好，如果有了數據，那麼再進行校對集修改將無效</p>
 </li>
 </ul>
+<hr>
+<h2 id="WEB亂碼問題"><a href="#WEB亂碼問題" class="headerlink" title="WEB亂碼問題"></a>WEB亂碼問題</h2><ul>
+<li>動態網站由三部分構成：瀏覽器，apacche服務器(PHP)，數據庫服務器，三個部分都有自己的字符集（特別對中文），數據需要再三個部分之間來回傳遞，很容易產生亂碼</li>
+<li>如何解決亂碼問題：統一編碼（三碼合一）</li>
+<li>但是事實上不可能：瀏覽器是用戶管理（根本不可能控制）</li>
+<li>但是必須要解決這些問題：主要靠PHP來做<br><img src="關係圖.png" alt="關係圖"></li>
+</ul>
+<hr>
+<h4 id="小練習（站點統計）"><a href="#小練習（站點統計）" class="headerlink" title="小練習（站點統計）"></a>小練習（站點統計）</h4><ul>
+<li><p>1.將用戶的訪問信息紀錄到文件中：獨佔一行，紀錄IP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 獲取用戶信息</span><br><span class="line">$ip = $_SERVER[&apos;REMOTE_ADDR&apos;];</span><br><span class="line"></span><br><span class="line">// 寫入文件（追加）</span><br><span class="line">file_put_content(&apos;record.txt&apos;, $ip.&quot;\r\n&quot;, FILE_APPEND);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.所有的數據都是通過文件中紀錄的內容來計算出來：讀取整個文件，一行代表訪問一次：使用file函數讀取</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 讀取數據：以行為單位</span><br><span class="line">$info = file(&apos;record.txt&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3.總的訪問次數出來：數據的總行數，就是讀取數據數組的總紀錄數</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 求出網站的總訪問量</span><br><span class="line">$visits = count($info);</span><br><span class="line"></span><br><span class="line">// 求出當前用戶（IP）出現的次數</span><br><span class="line">$ip_visits = 0;</span><br><span class="line">$unique_ips = array();</span><br><span class="line">foreach($info as $each_ip) &#123;</span><br><span class="line">    // 統計當前數組中擁有的獨立IP數</span><br><span class="line">    if (!in_array($each_ip, $unique_ips)) &#123;</span><br><span class="line">        // 將當前新的用戶加入到獨立ip數組中</span><br><span class="line">        $unique_ips[] = $each_ip;</span><br><span class="line">        </span><br><span class="line">        // 判斷當前新家的IP($each_ip)是否是當前用戶的IP</span><br><span class="line">        if ($ip == trim($each_ip)) $user_visit = count($unique_ips);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // 比較：從文件中讀出來的是一行，需要去除換行符才能比較</span><br><span class="line">    if (trim($each_ip) == $ip) $ip_visits++;</span><br><span class="line">&#125;</span><br><span class="line">// 統計$unique_ips中的元素個數：就是獨立IP數：總用戶</span><br><span class="line">$users = count($unique_ips);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 輸出</span><br><span class="line">echo &quot;歡迎訪問‘小白文 · Vincent‘的部落格，你是第&#123;$user_visit&#125;個用戶，當前網站一共有&#123;$users&#125;個用戶，網頁義工被訪問了&#123;$visits&#125;次，你當前是第&#123;$ip_visits&#125;次訪問！&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2017/11/16/數據類型（列類型）/" style="float: left;">
+        ← 數據類型（列類型）
+    </a>
     
     
     <a class="pull-right" href="/2017/09/05/Lua簡單嘗試/">

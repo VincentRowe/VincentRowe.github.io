@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>數據類型（列類型） | 小白文 · Vincent</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="小白文 · Vincent">
+    <meta name="author" content="小白文 · Vincent">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="小白文 · Vincent" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">小白文 · Vincent</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-11-16T13:27:01.000Z" itemprop="datePublished">
+          2017-11-16
+      </time>
+    
+</span>
+                <h1>數據類型（列類型）</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<ul>
+<li>所謂的數據類型：對數據進行統一的分類，從系統的角度出發為了能夠使用統一的方式進行管理；更好的利用有限的空間</li>
+<li>SQL中將數據類型分成了三大類：數值類型，字符串類型和時間日期類型<br><img src="SQL數據類型.png" alt="SQL數據類型"></li>
+</ul>
+<hr>
+<h4 id="數值型"><a href="#數值型" class="headerlink" title="數值型"></a>數值型</h4><ul>
+<li>數值型數據：都是數值</li>
+<li><p>系統將數值型分為整數型和小數型</p>
+</li>
+<li><p><b>整數型</b></p>
+</li>
+<li>存儲整型數據：在SQL中因為更多要考慮如何節省磁盤空間，所以系統將整型又細分為5類：</li>
+<li><code>Tinyint</code>：迷你整型，使用<code>一個字節</code>存儲，表示的狀態最多為256種（常用）</li>
+<li><code>Smallint</code>：小數型：使用<code>兩個字節</code>存儲，表示的狀態最多為65536種</li>
+<li><code>Mediumint</code>：中整型，使用<code>三個字節</code>存儲</li>
+<li><code>Int</code>：標準整型，使用<code>四個字節</code>存儲（常用）</li>
+<li><code>Bigint</code>：大整型，使用<code>八個字節</code>存儲</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">類型</th>
+<th style="text-align:center">字節</th>
+<th style="text-align:center">最小值(有符號/無符號)</th>
+<th style="text-align:center">最大值(有符號/無符號)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TINYINT</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">-128/0</td>
+<td style="text-align:center">127/255</td>
+</tr>
+<tr>
+<td style="text-align:center">SMALLINT</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">-32768/0</td>
+<td style="text-align:center">32767/65535</td>
+</tr>
+<tr>
+<td style="text-align:center">MEDIUMINT</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">-8388608/0</td>
+<td style="text-align:center">8388607/16777215</td>
+</tr>
+<tr>
+<td style="text-align:center">INT/INTEGE</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">-2147483648/0</td>
+<td style="text-align:center">2147483647/4294967295</td>
+</tr>
+<tr>
+<td style="text-align:center">BIGINT</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">-9223372036854775808/0</td>
+<td style="text-align:center">9223372936854775807/18446744073709551615</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>.eg</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 創建整型表</span><br><span class="line">create table if not exists my_int(</span><br><span class="line">    int_1 tinyint,</span><br><span class="line">    int_2 smallint,</span><br><span class="line">    int_3 int,</span><br><span class="line">    int_4 bigint</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line"># 插入數據</span><br><span class="line">insert into my_int values(100, 100, 100, 100);  -- 有效數據</span><br><span class="line">insert into my_int values(&apos;a&apos;, &apos;b&apos;, &apos;199&apos;, &apos;f&apos;);    -- 無效數據：類型限定(error: Incorrect integer value: &apos;a&apos; for column &apos;int_1&apos; at row 1)</span><br><span class="line">insert into my_int values(255, 10000, 100000, 10000000);     -- 無效數據：超出範圍(error: Out of range value for column &apos;int_1&apos; at row 1)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SQL中的數值類型全部都是默認有符號：分正負</p>
+</li>
+<li><p>有時候需要使用無符號數據：需要給數據類型限定：<code>int unsigned;</code>    – 無符號，從0開始</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 給表添加一個無符號類型</span><br><span class="line">alter table my_int add int_5 tinyint unsigned;      -- 無符號類型</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看表結構的時候，發現每個字段的數據類型之後都會自帶一個括號，裡面有指定的數字<br><img src="顯示寬度.png" alt="顯示寬度"></p>
+</li>
+<li><p>其作用：是數據最終顯示的位數如：-123是4位顯示寬度（包含符號）沒有特別的含義，只是默認顯示的告訴用戶可以顯示的形式而已，實際上用戶是可以控制的，這種控制<code>不會改變數據本身的大小</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table my_int add int_6 tinyint(1) unsigned;   -- 指定顯示寬度為1；</span><br><span class="line">insert into my_int values(127,0,0,0,255,277);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>顯示寬度的意義：在於當數據不夠顯示寬度的時候，會自動讓數據變成對應的顯示寬度；通常需要搭配一個前導0來增加寬度，不改變值大小：<code>zerofill(零填充)</code>，零填充會導致數值自動變成無符號</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table my_int add int_7 tinyint(2) zerofill;   -- 顯示寬度為2，0填充</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>零填充的意義（顯示寬度）：保證數據格式</p>
+</li>
+</ul>
+<hr>
+<h4 id="小數型"><a href="#小數型" class="headerlink" title="小數型"></a>小數型</h4><ul>
+<li>小數型：帶有小數點或者範圍超出整型的數值類型</li>
+<li><p>SQL中：將小數型細分為兩種：浮點型和定點型</p>
+<ul>
+<li>浮點型：小數點浮動，精度有限，而且會丟失精度</li>
+<li>定點型：小數點固定，精度固定，不會丟失精度</li>
+</ul>
+</li>
+<li><p><b>浮點型：</b></p>
+</li>
+<li>浮點型數據是一種精度型數據：因為超出指定範圍之後，會丟失精度（自動四捨五入）</li>
+<li>浮點型：理論分為兩種精度</li>
+<li><code>Float:</code>但精度，佔用4個字節存儲數據，精度範圍大概為7位左右</li>
+<li><code>Double:</code>雙精度，佔用8個字節存儲數據，精度範圍大概為15位左右<br>| 類型 | 存儲空間(字節) | 最小值(理論) | 最大值(理論) |<br>| :-: | :-: | :-: | :-: |<br>| FLOAT | 4 | -3.402823466E+38 | 3.402823466E+38 |<br>| DOUBLE | 8 | -1.797693`348623157E+308 | 1.7976931348623157E+308 |</li>
+<li><p>創建浮點數表：直接float表示沒有小數部分；<code>float(M,D):</code>M代表總長度，D代表小數部分長度，整數部分長度位M-D</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 創建浮點數表</span><br><span class="line">create table if not exists my_float(</span><br><span class="line">    f1 float,</span><br><span class="line">    f2 float(10, 2),    -- 10位在精度範圍以外</span><br><span class="line">    f3 float(6, 2)      -- 6位在精度範圍之內</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入數據：可以是直接小數，也可以是科學計數法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 插入數據</span><br><span class="line">insert into my_float values(1000.10, 1000.10, 1000.10);     -- 符合條件</span><br><span class="line">insert into my_float values(1234567890, 12345678.90, 1234.56);    -- 符合條件</span><br><span class="line">insert into my_float values(3e38, 3.01e7, 1234.56);</span><br><span class="line">insert into my_float values(9999999999, 99999999.99, 9999.99);      -- 最大值</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><b>浮點型數據的插入：整型部分是不能超出長度的，單小數部分可以超出長度（系統會自動四捨五入）</b></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 超出長度插入數據</span><br><span class="line">insert into my_float values(123456, 1234,12345678, 123.9876543);    -- 小數部分超出範圍（系統自動四捨五入）</span><br><span class="line">insert into my_float values(123456, 1234.12, 12345.56);     -- 整數部分超出範圍（Out of range value for column &apos;f3&apos; at row 1）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>結果：浮點數一定會進行四捨五入（超出精度範圍）：浮點數如果是應為系統進位導致整數部分超出指定的長度，那麼系統也允許成立</p>
+</li>
+</ul>
+<h4 id="小數型-1"><a href="#小數型-1" class="headerlink" title="小數型"></a>小數型</h4><ul>
+<li>絕對保證整數部分不會被四捨五入（不會丟失精度），小數部分有可能（理論小數部分也不會丟失精度）<br>| 類型 | 存儲空間(字節) | 最小值(理論) | 最大值(理論) |<br>| :-: | :-: | :-: | :-: |<br>| DECIMAL | 變長，大致是每9個數字，採用4個字節存儲 整數和小數分開計算 | M, 最大是65 D, 最大是30 默認是10, 2 - (65個9) | (+ 65個9) |</li>
+<li><p>創建定點數表：以浮點數作為對比</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists my_decimal(</span><br><span class="line">    f1 float(10, 2),</span><br><span class="line">    d1 decimal(10, 2)</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入數據：定點數的整數部分一定不能超出長度（進位不可以），小數部分的長度可以隨意超出（系統自動四捨五入）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into my_decimal values(12345678.90, 12345678.90);    -- 有效數據</span><br><span class="line">insert into my_decimal values(1234.123456, 1234.123456);    -- 小數部分超出（允許：有警告）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>查看警告：show warnings;</code><br><img src="警告顯示.png" alt="警告顯示"></p>
+</li>
+<li><p>浮點數如果進位導致長度溢出沒有問題，但是定位數不行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into my_decimal values(99999999.99, 99999999.99);    -- 沒有問題</span><br><span class="line">insert into my_decimal values(99999999.99, 99999999.999);    -- 進位超出（Out of range value for column &apos;d1&apos; at row 1）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看數據效果<br><img src="定點數超出範圍顯示.png" alt="定點數超出範圍顯示"></p>
+</li>
+</ul>
+<h4 id="時間日期類型"><a href="#時間日期類型" class="headerlink" title="時間日期類型"></a>時間日期類型</h4><ul>
+<li><b><code>Datatime：</code></b>時間日期類型，格式是<code>YYYY-mm-dd HH:ii:ss</code>; 表示的範圍是從1000到9999年，有0值：<code>0000-00-00 00:00:00</code></li>
+<li><b><code>Date：</code></b>日期，就是datetime中的date部分</li>
+<li><b><code>Time：</code></b>時間段，指定的某個區間之間，-時間 +時間</li>
+<li><b><code>TimeTamp：</code></b>時間戳，並不是時間戳，只是從1970年開始的YYYY-mm-dd HH:ii:ss 格式與datetime完全一致</li>
+<li><b><code>Year：</code></b>年份，兩種形式，year(2)和year(4)：表示1901年到2155年<br>| 類型 | 顯示格式 | 取值 | 存儲空間 | 零值 |<br>| :-: | :-: | :-: | :-: | :-: |<br>| DATETIME | YYYY-mm-dd HH:mm:ss | ‘1000-01-01 00:00:00’到’9999-12-31 23:59:59’ | 8 | 00000-00-00 00:00:00 |<br>| TIMESTAMP | YYYY-mm-dd HH:mm:ss | 是’1970-01-01 00:00:00’到’2038-01-19 03:14:07’ | 4 | 0000-00-00 00:00:00 |<br>| DATE | YYYY-mm-dd | ‘1000-01-01’到’9999-12-31’ | 3 | 0000-00-00 |<br>| TIME | HH:mm:ss | ‘-838:59:59’到’838:59:59’ | 3 | 00:00:00 |<br>| YEAR | YYYY | 1901到2155 | 1 | 0000 |</li>
+<li><b>DATETIME, TIMESTAMP, DATE，在存儲數據時，針對數據格式與合法性進行驗證，不對日期的時間合法性進行驗證</b></li>
+<li><p>創建時間日期表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists my_date(</span><br><span class="line">    d1 datetime,</span><br><span class="line">    d2 date,</span><br><span class="line">    d3 time,</span><br><span class="line">    d4 timestamp,</span><br><span class="line">    d5 year</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>插入數據：時間time可以為負數，而且可以是很大的負數，year可以使用2位數插入，也可以使用4位數</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into my_date values(&apos;2015-10-01 11:33:56&apos;, &apos;2015-06-12&apos;, &apos;11:33:56&apos;, &apos;2015-10-01 11:33:56&apos;, 2015);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 時間使用負數</span><br><span class="line">insert into my_date values(&apos;2015-10-01 11:33:56&apos;, &apos;2015-06-12&apos;, &apos;-211:33:56&apos;, &apos;2015-10-01 11:33:56&apos;, 2015);</span><br><span class="line">insert into my_date values(&apos;2015-10-01 11:33:56&apos;, &apos;2015-06-12&apos;, &apos;-2 11:33:56&apos;, &apos;2015-10-01 11:33:56&apos;, 2015);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># year可以使用2位或者4位</span><br><span class="line">insert into my_date values(&apos;2015-10-01 11:33:56&apos;, &apos;2015-06-12&apos;, &apos;-211:33:56&apos;, &apos;2015-10-01 11:33:56&apos;, 69);</span><br><span class="line">insert into my_date values(&apos;2015-10-01 11:33:56&apos;, &apos;2015-06-12&apos;, &apos;-211:33:56&apos;, &apos;2015-10-01 11:33:56&apos;, 70);</span><br></pre></td></tr></table></figure>
+<p><img src="時間日期數據類型演示.png" alt="時間日期數據類型演示"></p>
+<ul>
+<li>Timestamp字段：只要當前所在的紀錄被更新，該字段一定會自動更改為當前時間</li>
+</ul>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2017/10/16/数据库操作/">
+        数据库操作 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+
+
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By 小白文 · Vincent. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Vincent</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      (function(){
+        console.log('font');
+        var getCss = function(path) {
+          var head = document.getElementsByTagName('head')[0];
+          link = document.createElement('link');
+          link.href = path;
+          link.rel = 'stylesheet';
+          link.type = 'text/css';
+          head.appendChild(link);
+        };
+        getCss('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+        getCss('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+      })();
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
