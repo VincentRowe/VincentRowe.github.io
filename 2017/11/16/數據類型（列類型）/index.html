@@ -183,21 +183,22 @@
         <div class="col-md-8 col-md-offset-2">
       		<ul>
 <li>所謂的數據類型：對數據進行統一的分類，從系統的角度出發為了能夠使用統一的方式進行管理；更好的利用有限的空間</li>
-<li>SQL中將數據類型分成了三大類：數值類型，字符串類型和時間日期類型<br><img src="SQL數據類型.png" alt="SQL數據類型"></li>
+<li>SQL中將數據類型分成了三大類：數值類型，字符串類型和時間日期類型</li>
 </ul>
+<p><img src="SQL數據類型.png" alt="SQL數據類型"></p>
 <hr>
 <h4 id="數值型"><a href="#數值型" class="headerlink" title="數值型"></a>數值型</h4><ul>
 <li>數值型數據：都是數值</li>
-<li><p>系統將數值型分為整數型和小數型</p>
-</li>
-<li><p><b>整數型</b></p>
-</li>
-<li>存儲整型數據：在SQL中因為更多要考慮如何節省磁盤空間，所以系統將整型又細分為5類：</li>
+<li>系統將數值型分為整數型和小數型</li>
+<li><b>整數型</b></li>
+<li>存儲整型數據：在SQL中因為更多要考慮如何節省磁盤空間，所以系統將整型又細分為5類：<ul>
 <li><code>Tinyint</code>：迷你整型，使用<code>一個字節</code>存儲，表示的狀態最多為256種（常用）</li>
 <li><code>Smallint</code>：小數型：使用<code>兩個字節</code>存儲，表示的狀態最多為65536種</li>
 <li><code>Mediumint</code>：中整型，使用<code>三個字節</code>存儲</li>
 <li><code>Int</code>：標準整型，使用<code>四個字節</code>存儲（常用）</li>
 <li><code>Bigint</code>：大整型，使用<code>八個字節</code>存儲</li>
+</ul>
+</li>
 </ul>
 <table>
 <thead>
@@ -250,8 +251,11 @@
 <li><p>有時候需要使用無符號數據：需要給數據類型限定：<code>int unsigned;</code>    – 無符號，從0開始</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 給表添加一個無符號類型</span><br><span class="line">alter table my_int add int_5 tinyint unsigned;      -- 無符號類型</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>查看表結構的時候，發現每個字段的數據類型之後都會自帶一個括號，裡面有指定的數字<br><img src="顯示寬度.png" alt="顯示寬度"></p>
+<li><p>查看表結構的時候，發現每個字段的數據類型之後都會自帶一個括號，裡面有指定的數字</p>
 </li>
+</ul>
+<p><img src="顯示寬度.png" alt="顯示寬度"></p>
+<ul>
 <li><p>其作用：是數據最終顯示的位數如：-123是4位顯示寬度（包含符號）沒有特別的含義，只是默認顯示的告訴用戶可以顯示的形式而已，實際上用戶是可以控制的，這種控制<code>不會改變數據本身的大小</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table my_int add int_6 tinyint(1) unsigned;   -- 指定顯示寬度為1；</span><br><span class="line">insert into my_int values(127,0,0,0,255,277);</span><br></pre></td></tr></table></figure>
 </li>
@@ -289,7 +293,7 @@
 </li>
 </ul>
 <hr>
-<h4 id="小數型-1"><a href="#小數型-1" class="headerlink" title="小數型"></a>小數型</h4><ul>
+<h4 id="定點型"><a href="#定點型" class="headerlink" title="定點型"></a>定點型</h4><ul>
 <li>絕對保證整數部分不會被四捨五入（不會丟失精度），小數部分有可能（理論小數部分也不會丟失精度）</li>
 </ul>
 <table>
@@ -317,14 +321,18 @@
 <li><p>插入數據：定點數的整數部分一定不能超出長度（進位不可以），小數部分的長度可以隨意超出（系統自動四捨五入）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into my_decimal values(12345678.90, 12345678.90);    -- 有效數據</span><br><span class="line">insert into my_decimal values(1234.123456, 1234.123456);    -- 小數部分超出（允許：有警告）</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><code>查看警告：show warnings;</code><br><img src="警告顯示.png" alt="警告顯示"></p>
+<li><p><code>查看警告：show warnings;</code></p>
 </li>
+</ul>
+<p><img src="警告顯示.png" alt="警告顯示"></p>
+<ul>
 <li><p>浮點數如果進位導致長度溢出沒有問題，但是定位數不行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into my_decimal values(99999999.99, 99999999.99);    -- 沒有問題</span><br><span class="line">insert into my_decimal values(99999999.99, 99999999.999);    -- 進位超出（Out of range value for column &apos;d1&apos; at row 1）</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>查看數據效果<br><img src="定點數超出範圍顯示.png" alt="定點數超出範圍顯示"></p>
+<li><p>查看數據效果</p>
 </li>
 </ul>
+<p><img src="定點數超出範圍顯示.png" alt="定點數超出範圍顯示"></p>
 <hr>
 <h4 id="時間日期類型"><a href="#時間日期類型" class="headerlink" title="時間日期類型"></a>時間日期類型</h4><ul>
 <li><b><code>Datatime：</code></b>時間日期類型，格式是<code>YYYY-mm-dd HH:ii:ss</code>; 表示的範圍是從1000到9999年，有0值：<code>0000-00-00 00:00:00</code></li>
@@ -394,7 +402,200 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># year可以使用2位或者4位</span><br><span class="line">insert into my_date values(&apos;2015-10-01 11:33:56&apos;, &apos;2015-06-12&apos;, &apos;-211:33:56&apos;, &apos;2015-10-01 11:33:56&apos;, 69);</span><br><span class="line">insert into my_date values(&apos;2015-10-01 11:33:56&apos;, &apos;2015-06-12&apos;, &apos;-211:33:56&apos;, &apos;2015-10-01 11:33:56&apos;, 70);</span><br></pre></td></tr></table></figure>
 <p><img src="時間日期數據類型演示.png" alt="時間日期數據類型演示"></p>
 <ul>
-<li>Timestamp字段：只要當前所在的紀錄被更新，該字段一定會自動更改為當前時間</li>
+<li>Timestamp字段：只要當前所在的紀錄被更新，該字段一定會自動更改為當前時間<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># timesTamp: 修改紀錄</span><br><span class="line">update my_date set d1 = &apos;2015-09-28 11:23:23&apos; where d5 = 2069;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="timesTamp修改紀錄.png" alt="timesTamp修改紀錄"></p>
+<ul>
+<li>網站是以PHP為實現的主要操作對象：PHP中有非常強大的時間日期處理函數：<code>date</code>，只需要一個時間戳就可以轉換成任意類型的時間：以PHP為主的時候，都是在數據庫使用時間戳（整型）來存儲時間</li>
+</ul>
+<hr>
+<h4 id="字符串類型"><a href="#字符串類型" class="headerlink" title="字符串類型"></a>字符串類型</h4><ul>
+<li>在SQL中，將字符串類型分為6類：<code>char, varchar, text, blob, enum 和 set</code></li>
+<li><b>定長字符串</b></li>
+<li>定長字符串：char，磁盤（二維表）在定義結構的時候，就已經確定了最終數據的存儲長度<ul>
+<li><code>Char(L):</code>L代表length，可以存儲的長度，單位為字符，最大長度值可以為255</li>
+<li><code>Char(4):</code>在UTF8環境下，需要4 * 3 = 12個字節</li>
+</ul>
+</li>
+<li><b>變長字符串</b></li>
+<li>變長字符串：varchar，在分配空間的時候，按照最大的空間分配；但是實際上最終用了多少，是根據具體的數據來確定<ul>
+<li><code>Varchar(L):</code>L代表字符長度 理論長度是65536個字節，但是會多出1到2個字節來確定存儲的實際長度；但是實際上如果長度超過255，既不用定長也不用變長，使用文本字節<code>text</code></li>
+<li><code>Varchar(10):</code>的確存了10個漢字，utf8環境，10 <em> 3 + 1 = 31(bytes)；存儲3個漢字 3 </em> 3 + 1 =10(bytes)</li>
+</ul>
+</li>
+<li>定長與變長的存儲實際空間(UTF8)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">實際存儲數據</th>
+<th style="text-align:center">Char(4)</th>
+<th style="text-align:center">Varchar(4)</th>
+<th style="text-align:center">Char占用字節</th>
+<th style="text-align:center">Varchar占用字節</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ABCD</td>
+<td style="text-align:center">ABCD</td>
+<td style="text-align:center">ABCD</td>
+<td style="text-align:center">4 * 3 = 12</td>
+<td style="text-align:center">4 * 3 + 1 = 13</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">A</td>
+<td style="text-align:center">4 * 3 = 12</td>
+<td style="text-align:center">1 * 3 + 1 = 4</td>
+</tr>
+<tr>
+<td style="text-align:center">ABCDE</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">❌</td>
+<td style="text-align:center">數據超過長度</td>
+<td style="text-align:center">數據超過長度</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>如何選擇定長或者是變長字符串？<ul>
+<li>定長的磁盤空間比較浪費，但是效率高；如果數據基本上長度都一樣，就是用定長，如：身份證、電話號碼、手機號碼等</li>
+<li>變長的磁盤空間比較節省，但是效率低；如果數據不能確定長度（不同的數據有變化），如：姓名、地址等</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="文本字符串"><a href="#文本字符串" class="headerlink" title="文本字符串"></a>文本字符串</h4><ul>
+<li>如果數據量非常大，通常說超過255個字節就會使用文本字符串</li>
+<li>文本字符串根據存儲的數據格式進行分類：text和blob<ul>
+<li><code>Text:</code>存儲文字（二進制數據實際上都是存儲路徑）</li>
+<li><code>Blob:</code>存儲二進制數據（一般不用）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="枚舉字符串"><a href="#枚舉字符串" class="headerlink" title="枚舉字符串"></a>枚舉字符串</h4><ul>
+<li>枚舉：enum，事先將所有可能出現的結果都設計好，實際上存儲的數據必須是規定好的數據中的一個</li>
+<li>枚舉的使用方式<ul>
+<li>定義：enum(可能出現的元素列表);       // 如enum(‘男’, ‘女’, ‘其他’, ‘保密’);</li>
+<li>使用：存儲數據，只能存儲上面定義好的數據<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 創建枚舉表</span><br><span class="line">create table if not exists my_enum(</span><br><span class="line">    gender enum(&apos;男&apos;, &apos;女&apos;, &apos;其他&apos;, &apos;保密&apos;)</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="enum數據表.png" alt="enum數據表"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 插入數據</span><br><span class="line">insert into my_enum values(&apos;男&apos;), (&apos;保密&apos;);    -- 有效數據</span><br><span class="line">insert into my_enum values(&apos;male&apos;);     -- 無效數據（error: Data truncated for column &apos;gender&apos; at row 1）</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>enum作用：</p>
+<ul>
+<li>規範數據格式：數據只能是規定的數據中的其中一個</li>
+<li>節省存儲空間（枚舉通常有一個別名：單選框）；枚舉實際存儲的是數值而不是字符串本身<ul>
+<li>在SQL中，系統也是自動轉換數據格式的：而且基本與PHP一樣（尤其是字符串轉數字）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>證明字段存儲的數據是數值：將數據取出來 + 0，就可以判斷出原來的數據存的到底是字符串還是數值，如果是字符串最終結果永遠為0，否則就是其他值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 將字段結果取出進行 +0 運算</span><br><span class="line">select gender + 0, gender from my_enum;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="字段數值判斷.png" alt="字段數值判斷"></p>
+<ul>
+<li>枚舉元素實際規律：根據元素出現的順序，從1開始編號</li>
+<li>枚舉原理：枚舉在進行數據規範的時候（定義的時候），系統會自動建立一個數字與枚舉元素的對應關係（關係放到日誌中）；然後進行數據插入的時候系統自動降字符轉換為對應的數字存儲，然後在進行數據提取的時候，系統自動將數值轉換成對應的字符串顯示</li>
+<li>因為枚舉實際存儲的是數值，所以可以直接插入數值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 數值插入枚舉元素</span><br><span class="line">insert into my_enum values(1), (2);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="數值插入枚舉元素.png" alt="數值插入枚舉元素"></p>
+<hr>
+<h4 id="集合字符串"><a href="#集合字符串" class="headerlink" title="集合字符串"></a>集合字符串</h4><ul>
+<li>集合字符串跟枚舉很類似：實際存儲的是數值，而不是字符串（集合是多選的）</li>
+<li>集合的使用方式：<ul>
+<li>定義：Set(元素列表)</li>
+<li>使用： 可以使用元素列表中的元素（多個），使用逗號分割<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 創建集合分類</span><br><span class="line">create table if not exists my_set(</span><br><span class="line">    hobby set(&apos;足球&apos;, &apos;籃球&apos;, &apos;羽毛球&apos;, &apos;乒乓球&apos;, &apos;棒球&apos;, &apos;網球&apos;, &apos;台球&apos;, &apos;排球&apos;)</span><br><span class="line">    -- 集合中L：每一個元素都是對應一個二進制位，被選中為1，沒有則為0；最後反過來</span><br><span class="line">    --          1      0       0        0       1       1      0     0</span><br><span class="line">    -- 反過來：00110001 = 49</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="集合字符串.png" alt="集合字符串"></p>
+<ul>
+<li>插入數據：可以使用多個元素字符串集合：也可以直接數值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 插入數據</span><br><span class="line">insert into my_set values(3);</span><br><span class="line">insert into my_set values(&apos;足球, 排球, 棒球, 網球&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="集合字符串插入數據.png" alt="集合字符串插入數據"></p>
+<ul>
+<li>集合中元素的順序沒有關係：最終系統都會去匹配順序</li>
+<li>集合的強大在於能夠規範數據和節省空間：PHP也可以貴發數據，但是對於PHP來說效率優先，而且數據的維護可以通過數字進行，增加PHP的維護成本；PHP根本沒有辦法判斷數據在數據庫中的形式</li>
+</ul>
+<hr>
+<h4 id="Mysql紀錄長度"><a href="#Mysql紀錄長度" class="headerlink" title="Mysql紀錄長度"></a>Mysql紀錄長度</h4><ul>
+<li>Mysql中規定：任何一條紀錄最長不能超過65535個字節（varchar永遠達不到理想值）</li>
+<li>Varchar的實際存儲長度能達到多少，主要看字符集編碼<ul>
+<li>UTF8下varchar的實際頂配：21844字節</li>
+<li>GBK下的varchar的實際頂配：32766字節<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 求出varchar在utf8和GBK下的實際最大值</span><br><span class="line">create table if not exists my_utf8(</span><br><span class="line">    name varchar(65535)</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">create table if not exists my_gbk(</span><br><span class="line">    name varchar(65535)</span><br><span class="line">)charset gbk;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="varchar最大長度.png" alt="varchar最大長度"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 求出varchar在utf8和GBK下的實際最大值</span><br><span class="line">create table if not exists my_utf8(</span><br><span class="line">    name varchar(21845)</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">create table if not exists my_gbk(</span><br><span class="line">    name varchar(32767)</span><br><span class="line">)charset gbk;</span><br></pre></td></tr></table></figure>
+<p><img src="varchar最大長度2.png" alt="varchar最大長度2.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 求出varchar在utf8和GBK下的實際最大值</span><br><span class="line">create table if not exists my_utf8(</span><br><span class="line">    name varchar(21844)     -- 21833 * 3 + 2 = 65532 + 2 = 65534</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">create table if not exists my_gbk(</span><br><span class="line">    name varchar(32766)     -- 32766 * 2 + 2 = 65532 + 2 = 65534</span><br><span class="line">)charset gbk;</span><br></pre></td></tr></table></figure>
+<p><img src="varchar最大值最終結果.png" alt="varchar最大值最終結果"></p>
+<ul>
+<li>想用完整個65535個字節長度：增加一個tinyint字節即可（有問題）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists my_utf8_1(</span><br><span class="line">    age tinyint,</span><br><span class="line">    name varchar(21844)     -- 21833 * 3 + 2 = 65532 + 2 = 65534</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">create table if not exists my_gbk_1(</span><br><span class="line">    age tinyint,</span><br><span class="line">    name varchar(32766)     -- 32766 * 2 + 2 = 65532 + 2 = 65534</span><br><span class="line">)charset gbk;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="varchar使用最大值方法.png" alt="varchar使用最大值方法"></p>
+<ul>
+<li>Mysql紀錄中，如果有任何一個字段允許為空，那麼系統會自動從整個紀錄中保留一個字節來存儲NULL（若想釋放NULL所占用的字節，必須保證所有的字段都不允許為空）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 釋放NULL</span><br><span class="line">create table if not exists my_utf8_1(</span><br><span class="line">    age tinyint not null,</span><br><span class="line">    name varchar(21844) not null     -- 21833 * 3 + 2 = 65532 + 2 = 65534</span><br><span class="line">)charset utf8;</span><br><span class="line"></span><br><span class="line">create table if not exists my_gbk_1(</span><br><span class="line">    age tinyint not null,</span><br><span class="line">    name varchar(32766) not null     -- 32766 * 2 + 2 = 65532 + 2 = 65534</span><br><span class="line">)charset gbk;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="釋放null 保証varchar最大值使用.png" alt="釋放null 保証varchar最大值使用"></p>
+<ul>
+<li>Mysql中的text文本字符串，不佔用紀錄長度；額外存儲，但是text文本字符串可是屬於紀錄的一部分，一定需要佔據紀錄中的部分長度：10個字節（保存數據的地址以及長度）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># text 占用是個字節長度</span><br><span class="line">create table if not exists my_text(</span><br><span class="line">    name varchar(21841) not null,     -- 21831 * 3 + 2 = 65523 + 2 = 65525</span><br><span class="line">    content text not null       -- 10</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h4 id="列屬性"><a href="#列屬性" class="headerlink" title="列屬性"></a>列屬性</h4><ul>
+<li>列屬性：真正約束字段的是數據類型，但是數據類型的約束很大一，需要有一些額外的約束，來更加保証數據的合法性</li>
+<li>列屬性有很多種：<code>NULL/NOT NULL, default, Primary key, unique key, auto_increment, comment</code></li>
+</ul>
+<hr>
+<h4 id="空屬性"><a href="#空屬性" class="headerlink" title="空屬性"></a>空屬性</h4><ul>
+<li>兩個值：<code>NULL</code>（默認的）和<code>NOT NULL</code>（不為空）</li>
+<li>雖然默認的，數據庫基恩都是字段為空，但是實際上在真實開發的時候，盡可能的要保証所有的數據都不應該為空，空數據沒有意義，空數據沒辦法參加運算</li>
+</ul>
+<p><img src="空屬性.png" alt="空屬性"></p>
+<ul>
+<li>實例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 創建一個實際案例表：班機表（名字，教室）</span><br><span class="line">create table if not exists my_class(</span><br><span class="line">    name varchar(20) not null,</span><br><span class="line">    room varchar(20) null       -- 代表允許為空：不寫默認就是允許為空</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="空屬性實際案例.png" alt="空屬性實際案例"></p>
+<hr>
+<h4 id="列描述"><a href="#列描述" class="headerlink" title="列描述"></a>列描述</h4><ul>
+<li>列描述：comment；描述，沒有實際含義，是專門用來描述字段，會根據表創建語句保存，用來給程序猿（數據庫管理者）來進行了解的<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists my_teachers(</span><br><span class="line">    name varchar(20) not null comment &apos;姓名&apos;,</span><br><span class="line">    money decimal(20, 2) not null comment &apos;工資&apos;</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="comment描述實例.png" alt="comment描述實例"></p>
+<hr>
+<p>####默認值</p>
+<ul>
+<li>默認值：某一種數據會經常性的出現某個具體的值，可以在一開始就制定好；在需要真實數據的時候，用戶可以選擇行的使用默認值</li>
+<li><p>默認值關鍵字：<code>default</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create table if not exists my_default(</span><br><span class="line">    name varchar(20) not null,</span><br><span class="line">    age tinyint unsigned default 0</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>默認值的生效：使用，在數據進行插入的時候，不給該字段賦值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into my_default (name) values(&apos;Vincent&apos;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="默認值實例.png" alt="默認值實例"></p>
+<ul>
+<li>想要使用默認值，可以不一定去指定列表，故意不使用字段列表：可以使用default關鍵字代替<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into my_default values(&apos;Eli&apos;, default);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
             <div class="clearfix"></div>
