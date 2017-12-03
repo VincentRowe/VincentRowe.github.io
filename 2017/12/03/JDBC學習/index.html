@@ -244,17 +244,20 @@
 <li>static Connection getConnection(String url, String user, String password);    // 試圖建立到給定數據庫 URL的連接</li>
 </ul>
 </li>
-<li><b>方法一：</b><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getConnection(&quot;jdbc://mysql://localhost:3306/my_jdbc&quot;, &quot;root&quot;, &quot;root&quot;);</span><br><span class="line">// URL: SUN公司與數據庫廠商之間的一種協議</span><br><span class="line">// jdbc:mysql://localhost:3306/my_jdbc;  // （協議  子協議  IP: 端口號  數據庫名稱）</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// mysql：`jdbc:mysql://localhost:3306/my_jdbc`  或者  `jdbc:mysql:////my_jdbc`（默認本季連接）</span><br><span class="line">// oracle：&lt;/b&gt;`jdbc:oracle:thin:@localhost:1521:sid`</span><br></pre></td></tr></table></figure>
+<li><p><b>方法一：</b></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getConnection(&quot;jdbc://mysql://localhost:3306/my_jdbc&quot;, &quot;root&quot;, &quot;root&quot;);</span><br><span class="line">// URL: SUN公司與數據庫廠商之間的一種協議</span><br><span class="line">// jdbc:mysql://localhost:3306/my_jdbc;  // （協議  子協議  IP: 端口號  數據庫名稱）</span><br></pre></td></tr></table></figure>
 <ul>
-<li><b>注意：</b>MySQL在高版本需要指明是否進行SSL連接；so 如上方法會報錯<code>WARN: Establishing SSL connection without server&#39;s identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn&#39;t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to &#39;false&#39;. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.</code></li>
+<li>mysql：<code>jdbc:mysql://localhost:3306/my_jdbc</code>  或者  <code>jdbc:mysql:////my_jdbc</code>（默認本季連接）</li>
+<li>oracle：<code>jdbc:oracle:thin:@localhost:1521:sid</code></li>
+</ul>
+</li>
+<li><p><b>注意：</b>MySQL在高版本需要指明是否進行SSL連接；so 如上方法會報錯<code>WARN: Establishing SSL connection without server&#39;s identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn&#39;t set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to &#39;false&#39;. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.</code></p>
+</li>
 <li>解決辦法：在jdbc.properties MySQL连接信息jdbc.url中加入ssl=true或false即可，如下所示：<code>jdbc.url=jdbc:mysql://localhost:3306/my_jdbc?characterEncoding=utf8&amp;useSSL=true</code></li>
 <li><p><b>方法二：</b></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Properties info = new Properties();   // 要參考數據文檔</span><br><span class="line">info.setProperty(&quot;user&quot;, &quot;root&quot;);</span><br><span class="line">info.setProperty(&quot;password&quot;, &quot;root&quot;);</span><br><span class="line">getConnection(&quot;jdbc.url=jdbc:mysql://localhost:3306/my_jdbc?characterEncoding=utf8&amp;useSSL=true&quot;, info);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><b>方法三：</b>    </p>
+<li><p><b>方法三：</b></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getConnection(&quot;jdbc.url=jdbc:mysql://localhost:3306/my_jdbc?username=root&amp;password=root&amp;characterEncoding=utf8&amp;useSSL=true&quot;);</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
